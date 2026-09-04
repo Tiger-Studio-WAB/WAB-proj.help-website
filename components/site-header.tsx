@@ -1,9 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { LanguageToggle } from "@/components/language-toggle";
 import { SignOutButton } from "@/components/sign-out-button";
-import type { ContentLanguage } from "@/lib/types";
-import type { Profile } from "@/lib/types";
 import type { UiCopy } from "@/lib/i18n";
+import type { ContentLanguage, Profile } from "@/lib/types";
 
 export function SiteHeader({
   copy,
@@ -15,44 +15,43 @@ export function SiteHeader({
   profile: Profile | null;
 }) {
   return (
-    <header className="sticky top-0 z-20 border-b border-border/80 bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-4">
-        <Link href={profile ? "/ideas" : "/"} className="flex items-center gap-3">
-          <span className="grid size-9 place-items-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-            W
-          </span>
+    <header className="bg-wab-red text-white">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-3">
+        <Link href={profile ? "/ideas" : "/"} className="flex items-center gap-3 text-white">
+          <Image
+            src="/wab-logo.svg"
+            alt=""
+            width={44}
+            height={42}
+            className="brightness-0 invert"
+            unoptimized
+            priority
+          />
           <span>
-            <span className="block text-sm font-semibold tracking-wide">
-              {copy.brand}
-            </span>
-            <span className="block text-xs text-muted-foreground">
-              {copy.heroEyebrow}
-            </span>
+            <span className="block text-sm font-semibold leading-tight">{copy.school}</span>
+            <span className="block text-xs text-white/80">{copy.brand}</span>
           </span>
         </Link>
-        <nav className="flex items-center gap-2 text-sm sm:gap-3">
+        <nav className="flex items-center gap-4 text-sm font-semibold">
           {profile ? (
             <>
-              <Link className="rounded-full px-3 py-1.5 hover:bg-muted" href="/ideas">
+              <Link href="/ideas" className="hover:underline">
                 {copy.ideas}
               </Link>
-              <Link className="rounded-full px-3 py-1.5 hover:bg-muted" href="/me">
+              <Link href="/me" className="hover:underline">
                 {copy.myBoard}
               </Link>
-              <Link
-                className="hidden rounded-full bg-primary px-3 py-1.5 font-medium text-primary-foreground sm:inline"
-                href="/ideas/new"
-              >
+              <Link href="/ideas/new" className="hidden hover:underline sm:inline">
                 {copy.publish}
               </Link>
+              <SignOutButton label={copy.signOut} />
             </>
           ) : (
-            <Link className="rounded-full px-3 py-1.5 hover:bg-muted" href="/login">
+            <Link href="/login" className="hover:underline">
               {copy.signIn}
             </Link>
           )}
           <LanguageToggle locale={locale} />
-          {profile ? <SignOutButton label={copy.signOut} /> : null}
         </nav>
       </div>
     </header>

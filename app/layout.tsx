@@ -1,18 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Noto_Sans_SC } from "next/font/google";
+import localFont from "next/font/local";
+import { Noto_Sans_SC } from "next/font/google";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { getProfile } from "@/lib/auth";
 import { getCopy } from "@/lib/locale";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const codec = localFont({
+  src: [
+    {
+      path: "../public/fonts/Codec-Pro-Variable.woff2",
+      weight: "100 900",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Codec-Pro-Variable-Italic.woff2",
+      weight: "100 900",
+      style: "italic",
+    },
+  ],
+  variable: "--font-codec",
+  display: "swap",
 });
 
 const notoSansSc = Noto_Sans_SC({
@@ -23,11 +32,11 @@ const notoSansSc = Noto_Sans_SC({
 
 export const metadata: Metadata = {
   title: {
-    default: "WAB Proj.Help",
-    template: "%s · WAB Proj.Help",
+    default: "Proj.Help · Western Academy of Beijing",
+    template: "%s · Proj.Help",
   },
   description:
-    "Publish project ideas, get help from the WAB community, and read replies in English or Chinese. Microsoft sign-in for @wab.edu only.",
+    "WAB board for project ideas, replies, and English/Chinese translation. Microsoft sign-in for @wab.edu only.",
 };
 
 export default async function RootLayout({
@@ -38,14 +47,12 @@ export default async function RootLayout({
   return (
     <html
       lang={locale === "zh" ? "zh-CN" : "en"}
-      className={`${geistSans.variable} ${geistMono.variable} ${notoSansSc.variable} h-full antialiased`}
+      className={`${codec.variable} ${notoSansSc.variable} h-full`}
     >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <SiteHeader copy={copy} locale={locale} profile={profile} />
-        <main className="mx-auto w-full max-w-6xl flex-1 px-5 py-10">{children}</main>
-        <footer className="border-t border-border/80 px-5 py-6 text-center text-xs text-muted-foreground">
-          {copy.restricted}
-        </footer>
+        <main className="flex-1">{children}</main>
+        <SiteFooter copy={copy} />
       </body>
     </html>
   );

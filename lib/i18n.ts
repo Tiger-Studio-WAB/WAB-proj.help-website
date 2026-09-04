@@ -4,6 +4,7 @@ export const UI_COOKIE = "wab-locale";
 
 export type UiCopy = {
   brand: string;
+  school: string;
   tagline: string;
   restricted: string;
   signIn: string;
@@ -17,7 +18,6 @@ export type UiCopy = {
   canHelp: string;
   writeResponse: string;
   postResponse: string;
-  translateTo: string;
   showingTranslation: string;
   showOriginal: string;
   translationUnavailable: string;
@@ -31,64 +31,57 @@ export type UiCopy = {
   backToIdeas: string;
   signedInAs: string;
   setupNeeded: string;
-  featurePublish: string;
-  featurePublishBody: string;
-  featureRespond: string;
-  featureRespondBody: string;
-  featureTranslate: string;
-  featureTranslateBody: string;
-  heroEyebrow: string;
+  heroLine: string;
   browseCta: string;
   domainError: string;
   authError: string;
+  howPost: string;
+  howReply: string;
+  howTranslate: string;
+  all: string;
+  address: string;
   categories: Record<IdeaCategory, string>;
 };
 
 const en: UiCopy = {
-  brand: "WAB Proj.Help",
-  tagline: "Publish a project idea. Get help — and a response — from the WAB community.",
-  restricted: "Microsoft sign-in only. Restricted to @wab.edu accounts.",
+  brand: "Proj.Help",
+  school: "Western Academy of Beijing",
+  tagline:
+    "Post a project idea and ask for help. Other people at WAB can reply, and posts can be translated between English and Chinese.",
+  restricted: "Sign in with your @wab.edu Microsoft account.",
   signIn: "Sign in with Microsoft",
   signOut: "Sign out",
-  ideas: "Project ideas",
-  publish: "Publish an idea",
-  myBoard: "My board",
-  readMore: "Open idea",
+  ideas: "Ideas",
+  publish: "Post an idea",
+  myBoard: "My posts",
+  readMore: "Open",
   helpNeeded: "Help needed",
-  responses: "Responses",
-  canHelp: "I can help with this",
-  writeResponse: "Write a response",
-  postResponse: "Post response",
-  translateTo: "Translate to Chinese",
-  showingTranslation: "Showing Chinese translation",
-  showOriginal: "Show original",
-  translationUnavailable:
-    "Translation is not configured yet. Add an AI Gateway key on Vercel to enable it.",
-  emptyIdeas: "No ideas yet. Be the first to publish one.",
-  emptyResponses: "No responses yet. Offer help or ask a clarifying question.",
+  responses: "Replies",
+  canHelp: "I can help",
+  writeResponse: "Reply",
+  postResponse: "Post reply",
+  showingTranslation: "Translation",
+  showOriginal: "Original",
+  translationUnavailable: "Translation is not set up yet.",
+  emptyIdeas: "No ideas posted yet.",
+  emptyResponses: "No replies yet.",
   title: "Title",
-  description: "Describe the idea",
+  description: "What is the idea?",
   category: "Category",
-  language: "Language of this post",
-  submitIdea: "Publish idea",
-  backToIdeas: "All ideas",
+  language: "Language",
+  submitIdea: "Post idea",
+  backToIdeas: "Ideas",
   signedInAs: "Signed in as",
-  setupNeeded:
-    "Connect a Supabase project and Microsoft Entra ID to enable sign-in.",
-  featurePublish: "Publish",
-  featurePublishBody:
-    "Share a project you want to start or grow — class work, service, research, or something new.",
-  featureRespond: "Respond",
-  featureRespondBody:
-    "Offer skills, feedback, or a question so ideas do not sit unanswered.",
-  featureTranslate: "Translate",
-  featureTranslateBody:
-    "Read ideas and replies in English or Chinese without rewriting the original post.",
-  heroEyebrow: "Western Academy of Beijing",
-  browseCta: "Browse ideas",
-  domainError:
-    "That Microsoft account is not a @wab.edu address. WAB Proj.Help is only open to the WAB community.",
-  authError: "Sign-in did not complete. Try Microsoft again with your WAB account.",
+  setupNeeded: "Microsoft sign-in needs Supabase and Entra ID before it will work.",
+  heroLine: "Connect, inspire, challenge:",
+  browseCta: "See ideas",
+  domainError: "That Microsoft account is not @wab.edu.",
+  authError: "Sign-in did not finish. Try again with your WAB account.",
+  howPost: "Post an idea you want help with.",
+  howReply: "Reply if you can help, or have a question.",
+  howTranslate: "Translate a post between English and Chinese.",
+  all: "All",
+  address: "10 Lai Guang Ying Dong Lu, Chaoyang, Beijing 100102",
   categories: {
     stem: "STEM",
     arts: "Arts",
@@ -101,47 +94,43 @@ const en: UiCopy = {
 };
 
 const zh: UiCopy = {
-  brand: "WAB Proj.Help",
-  tagline: "发布项目想法，向 WAB 社区寻求帮助，并得到回应。",
-  restricted: "仅支持 Microsoft 登录，且必须使用 @wab.edu 账户。",
+  brand: "Proj.Help",
+  school: "北京京西学校",
+  tagline: "发布项目想法并求助。同学和老师可以回复，内容也可以在中英文之间翻译。",
+  restricted: "请使用 @wab.edu 的 Microsoft 账户登录。",
   signIn: "使用 Microsoft 登录",
-  signOut: "退出登录",
-  ideas: "项目想法",
+  signOut: "退出",
+  ideas: "想法",
   publish: "发布想法",
-  myBoard: "我的看板",
-  readMore: "查看想法",
+  myBoard: "我的发布",
+  readMore: "打开",
   helpNeeded: "需要的帮助",
-  responses: "回应",
-  canHelp: "我可以提供帮助",
-  writeResponse: "写下回应",
-  postResponse: "发布回应",
-  translateTo: "翻译成英文",
-  showingTranslation: "正在显示英文翻译",
-  showOriginal: "查看原文",
-  translationUnavailable:
-    "翻译尚未配置。请在 Vercel 上添加 AI Gateway 密钥后启用。",
-  emptyIdeas: "还没有想法。成为第一个发布的人。",
-  emptyResponses: "还没有回应。可以提供帮助，或提出澄清问题。",
+  responses: "回复",
+  canHelp: "我可以帮忙",
+  writeResponse: "回复",
+  postResponse: "发布回复",
+  showingTranslation: "译文",
+  showOriginal: "原文",
+  translationUnavailable: "翻译还没有开通。",
+  emptyIdeas: "还没有人发布想法。",
+  emptyResponses: "还没有回复。",
   title: "标题",
-  description: "描述这个想法",
+  description: "这个想法是什么？",
   category: "分类",
-  language: "这篇内容的语言",
-  submitIdea: "发布想法",
-  backToIdeas: "全部想法",
-  signedInAs: "当前登录",
-  setupNeeded: "请先连接 Supabase 项目和 Microsoft Entra ID，才能登录。",
-  featurePublish: "发布",
-  featurePublishBody:
-    "分享你想开始或推进的项目——课堂作业、服务、研究，或全新尝试。",
-  featureRespond: "回应",
-  featureRespondBody: "提供技能、反馈或问题，让想法得到真正的回应。",
-  featureTranslate: "翻译",
-  featureTranslateBody: "用中文或英文阅读想法与回复，无需改写原文。",
-  heroEyebrow: "北京京西学校",
-  browseCta: "浏览想法",
-  domainError:
-    "该 Microsoft 账户不是 @wab.edu 邮箱。WAB Proj.Help 仅对 WAB 社区开放。",
-  authError: "登录未完成。请使用你的 WAB Microsoft 账户重试。",
+  language: "语言",
+  submitIdea: "发布",
+  backToIdeas: "想法",
+  signedInAs: "当前账户",
+  setupNeeded: "需要先接好 Supabase 和 Entra ID，才能用 Microsoft 登录。",
+  heroLine: "连接、启发、挑战：",
+  browseCta: "查看想法",
+  domainError: "这个 Microsoft 账户不是 @wab.edu。",
+  authError: "登录没有完成。请用你的 WAB 账户再试一次。",
+  howPost: "发布一个需要帮助的想法。",
+  howReply: "能帮忙，或者有问题，就回复。",
+  howTranslate: "把内容在中英文之间翻译。",
+  all: "全部",
+  address: "北京市朝阳区来广营东路10号 100102",
   categories: {
     stem: "STEM",
     arts: "艺术",

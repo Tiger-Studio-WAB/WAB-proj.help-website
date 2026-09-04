@@ -50,9 +50,7 @@ export function TranslatePanel({
 
     if (!result.ok) {
       setError(
-        result.error === "config"
-          ? copy.translationUnavailable
-          : copy.authError,
+        result.error === "config" ? copy.translationUnavailable : copy.authError,
       );
       return;
     }
@@ -64,21 +62,15 @@ export function TranslatePanel({
   const title = showTranslation && translated?.title ? translated.title : originalTitle;
   const body = showTranslation && translated ? translated.body : originalBody;
   const helpNeeded =
-    showTranslation && translated
-      ? translated.helpNeeded
-      : originalHelpNeeded;
+    showTranslation && translated ? translated.helpNeeded : originalHelpNeeded;
 
   return (
     <div className="space-y-4">
-      {title ? <h1 className="text-3xl font-semibold tracking-tight">{title}</h1> : null}
-      <p className="whitespace-pre-wrap text-base leading-8 text-muted-foreground">
-        {body}
-      </p>
+      {title ? <h1 className="text-3xl font-bold italic">{title}</h1> : null}
+      <p className="whitespace-pre-wrap text-base leading-8">{body}</p>
       {helpNeeded ? (
-        <div className="rounded-2xl bg-muted/70 px-4 py-3">
-          <p className="text-xs uppercase tracking-wider text-primary">
-            {copy.helpNeeded}
-          </p>
+        <div className="border-l-4 border-wab-yellow bg-muted px-4 py-3">
+          <p className="text-sm font-semibold">{copy.helpNeeded}</p>
           <p className="mt-1 text-sm leading-7">{helpNeeded}</p>
         </div>
       ) : null}
@@ -87,23 +79,21 @@ export function TranslatePanel({
           type="button"
           onClick={onTranslate}
           disabled={pending}
-          className="rounded-full border border-border px-4 py-2 text-sm hover:bg-muted disabled:opacity-60"
+          className="text-sm font-semibold text-wab-red hover:underline disabled:opacity-50"
         >
           {pending
             ? "…"
             : showTranslation
               ? copy.showOriginal
               : targetLanguage === "zh"
-                ? "Translate to 中文"
-                : "Translate to English"}
+                ? "中文"
+                : "English"}
         </button>
         {showTranslation ? (
-          <span className="text-xs text-muted-foreground">
-            {copy.showingTranslation}
-          </span>
+          <span className="text-sm text-muted-foreground">{copy.showingTranslation}</span>
         ) : null}
       </div>
-      {error ? <p className="text-sm text-danger">{error}</p> : null}
+      {error ? <p className="text-sm text-wab-red">{error}</p> : null}
     </div>
   );
 }

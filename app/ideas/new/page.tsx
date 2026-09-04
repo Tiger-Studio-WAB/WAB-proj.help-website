@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { IdeaForm } from "@/components/idea-form";
+import { PageShell } from "@/components/page-shell";
 import { requireSessionUser } from "@/lib/auth";
 import { getCopy } from "@/lib/locale";
 
@@ -13,12 +14,15 @@ export default async function NewIdeaPage({
   const { locale, copy } = await getCopy();
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6">
-      <Link href="/ideas" className="text-sm text-muted-foreground hover:text-foreground">
+    <PageShell>
+      <Link href="/ideas" className="text-sm font-semibold text-wab-red hover:underline">
         ← {copy.backToIdeas}
       </Link>
-      <h1 className="text-3xl font-semibold tracking-tight">{copy.publish}</h1>
-      <IdeaForm copy={copy} locale={locale} error={error} />
-    </div>
+      <h1 className="mt-4 text-3xl font-bold italic">{copy.publish}</h1>
+      <span className="rule-yellow mt-3" />
+      <div className="mt-8 max-w-3xl">
+        <IdeaForm copy={copy} locale={locale} error={error} />
+      </div>
+    </PageShell>
   );
 }

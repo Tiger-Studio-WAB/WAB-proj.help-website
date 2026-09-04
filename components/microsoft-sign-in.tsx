@@ -4,10 +4,12 @@ export function MicrosoftSignIn({
   label,
   nextPath,
   disabled,
+  theme = "red",
 }: {
   label: string;
   nextPath?: string;
   disabled?: boolean;
+  theme?: "red" | "white";
 }) {
   return (
     <form action={signInWithMicrosoft}>
@@ -15,7 +17,7 @@ export function MicrosoftSignIn({
       <button
         type="submit"
         disabled={disabled}
-        className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
+        className={`btn w-full ${theme === "white" ? "btn-white" : "btn-red"}`}
       >
         <MicrosoftMark />
         {label}

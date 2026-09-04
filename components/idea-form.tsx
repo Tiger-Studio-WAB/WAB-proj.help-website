@@ -12,60 +12,45 @@ export function IdeaForm({
   error?: string;
 }) {
   return (
-    <form action={createIdea} className="surface space-y-5 rounded-3xl p-6 sm:p-8">
+    <form action={createIdea} className="space-y-5">
       {error ? (
-        <p className="rounded-2xl bg-danger/15 px-4 py-3 text-sm text-danger">
+        <p className="bg-wab-yellow/40 px-3 py-2 text-sm">
           {error === "validation"
             ? locale === "zh"
-              ? "请填写更完整的标题和描述。"
-              : "Please add a longer title and description."
+              ? "标题和说明再写完整一点。"
+              : "Add a longer title and description."
             : locale === "zh"
-              ? "保存失败，请稍后重试。"
-              : "Could not save this idea. Try again."}
+              ? "没保存成功，请再试一次。"
+              : "Could not save this. Try again."}
         </p>
       ) : null}
 
       <label className="block space-y-2">
-        <span className="text-sm text-muted-foreground">{copy.title}</span>
-        <input
-          required
-          minLength={3}
-          maxLength={160}
-          name="title"
-          className="w-full rounded-2xl border border-border bg-background px-4 py-3 outline-none ring-ring focus:ring-2"
-        />
+        <span className="text-sm font-semibold">{copy.title}</span>
+        <input required minLength={3} maxLength={160} name="title" className="field" />
       </label>
 
       <label className="block space-y-2">
-        <span className="text-sm text-muted-foreground">{copy.description}</span>
+        <span className="text-sm font-semibold">{copy.description}</span>
         <textarea
           required
           minLength={10}
           maxLength={8000}
           name="body"
           rows={8}
-          className="w-full rounded-2xl border border-border bg-background px-4 py-3 outline-none ring-ring focus:ring-2"
+          className="field"
         />
       </label>
 
       <label className="block space-y-2">
-        <span className="text-sm text-muted-foreground">{copy.helpNeeded}</span>
-        <textarea
-          name="help_needed"
-          maxLength={1000}
-          rows={3}
-          className="w-full rounded-2xl border border-border bg-background px-4 py-3 outline-none ring-ring focus:ring-2"
-        />
+        <span className="text-sm font-semibold">{copy.helpNeeded}</span>
+        <textarea name="help_needed" maxLength={1000} rows={3} className="field" />
       </label>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block space-y-2">
-          <span className="text-sm text-muted-foreground">{copy.category}</span>
-          <select
-            name="category"
-            defaultValue="other"
-            className="w-full rounded-2xl border border-border bg-background px-4 py-3 outline-none ring-ring focus:ring-2"
-          >
+          <span className="text-sm font-semibold">{copy.category}</span>
+          <select name="category" defaultValue="other" className="field">
             {IDEA_CATEGORIES.map((category) => (
               <option key={category} value={category}>
                 {copy.categories[category]}
@@ -74,22 +59,15 @@ export function IdeaForm({
           </select>
         </label>
         <label className="block space-y-2">
-          <span className="text-sm text-muted-foreground">{copy.language}</span>
-          <select
-            name="source_language"
-            defaultValue={locale}
-            className="w-full rounded-2xl border border-border bg-background px-4 py-3 outline-none ring-ring focus:ring-2"
-          >
+          <span className="text-sm font-semibold">{copy.language}</span>
+          <select name="source_language" defaultValue={locale} className="field">
             <option value="en">English</option>
             <option value="zh">中文</option>
           </select>
         </label>
       </div>
 
-      <button
-        type="submit"
-        className="rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:brightness-110"
-      >
+      <button type="submit" className="btn btn-red">
         {copy.submitIdea}
       </button>
     </form>

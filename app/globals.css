@@ -1,35 +1,50 @@
 @import "tailwindcss";
 
 :root {
-  --background: #07111f;
-  --foreground: #f4efe4;
-  --card: #101b2d;
-  --card-foreground: #f4efe4;
-  --muted: #1a2740;
-  --muted-foreground: #c9c0ae;
-  --primary: #e3b341;
-  --primary-foreground: #1a1304;
-  --accent: #2a4063;
-  --border: #2c3d5a;
-  --ring: #e3b341;
-  --danger: #e07a6a;
+  --wab-red: #d72316;
+  --wab-blue: #2262d5;
+  --wab-yellow: #f4d348;
+  --wab-teal: #53d0ab;
+  --wab-cyan: #16c1f1;
+  --wab-purple: #948eff;
+  --wab-ink: #0e2034;
+  --wab-black: #131313;
+  --wab-gray: #7f8588;
+  --wab-paper: #ffffff;
+  --wab-fog: #f4f5f6;
+
+  --background: var(--wab-paper);
+  --foreground: var(--wab-ink);
+  --card: var(--wab-paper);
+  --muted: var(--wab-fog);
+  --muted-foreground: var(--wab-gray);
+  --primary: var(--wab-red);
+  --primary-foreground: #ffffff;
+  --accent: var(--wab-yellow);
+  --border: #d9dcdf;
+  --danger: #d72316;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-accent: var(--accent);
   --color-border: var(--border);
-  --color-ring: var(--ring);
   --color-danger: var(--danger);
-  --font-sans: var(--font-geist-sans), var(--font-noto-sc), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --color-wab-red: var(--wab-red);
+  --color-wab-blue: var(--wab-blue);
+  --color-wab-yellow: var(--wab-yellow);
+  --color-wab-teal: var(--wab-teal);
+  --color-wab-cyan: var(--wab-cyan);
+  --color-wab-purple: var(--wab-purple);
+  --color-wab-ink: var(--wab-ink);
+  --color-wab-black: var(--wab-black);
+  --font-sans: var(--font-codec), var(--font-noto-sc), Arial, Helvetica, sans-serif;
 }
 
 * {
@@ -38,24 +53,93 @@
 
 html,
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--wab-paper);
+  color: var(--wab-ink);
   font-family: var(--font-sans);
-}
-
-body {
-  min-height: 100%;
-  background-image:
-    radial-gradient(1200px 600px at 10% -10%, rgba(227, 179, 65, 0.08), transparent 50%),
-    radial-gradient(900px 500px at 110% 10%, rgba(80, 130, 190, 0.12), transparent 45%);
 }
 
 a {
   text-underline-offset: 3px;
 }
 
-.surface {
-  background: color-mix(in srgb, var(--card) 92%, transparent);
+.wab-grid {
+  background-color: var(--wab-red);
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.rule-yellow {
+  display: block;
+  width: 11rem;
+  height: 0.55rem;
+  background: var(--wab-yellow);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  padding: 0.6rem 1.15rem;
+  border: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.btn-red {
+  background: var(--wab-red);
+  color: #fff;
+}
+
+.btn-red:hover:not(:disabled) {
+  background: #b81c12;
+}
+
+.btn-white {
+  background: #fff;
+  color: var(--wab-red);
+}
+
+.btn-white:hover:not(:disabled) {
+  background: var(--wab-yellow);
+  color: var(--wab-black);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: inherit;
+}
+
+.field {
+  width: 100%;
   border: 1px solid var(--border);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+  background: #fff;
+  padding: 0.7rem 0.8rem;
+  outline: none;
+}
+
+.field:focus {
+  border-color: var(--wab-blue);
+}
+
+.panel {
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+.swatch {
+  display: inline-block;
+  width: 0.85rem;
+  height: 0.85rem;
+  flex-shrink: 0;
 }

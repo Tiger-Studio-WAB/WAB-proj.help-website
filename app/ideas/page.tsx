@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { IdeaCard } from "@/components/idea-card";
+import { PageShell } from "@/components/page-shell";
 import { requireSessionUser } from "@/lib/auth";
 import { listIdeas } from "@/lib/data";
 import { IDEA_CATEGORIES } from "@/lib/i18n";
@@ -17,22 +18,19 @@ export default async function IdeasPage({
   const active = category ?? "all";
 
   return (
-    <div className="space-y-8">
+    <PageShell>
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <h1 className="text-3xl font-semibold tracking-tight">{copy.ideas}</h1>
-          <p className="mt-2 text-sm text-muted-foreground">{copy.tagline}</p>
+          <h1 className="text-3xl font-bold italic">{copy.ideas}</h1>
+          <span className="rule-yellow mt-3" />
         </div>
-        <Link
-          href="/ideas/new"
-          className="inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
-        >
+        <Link href="/ideas/new" className="btn btn-red">
           {copy.publish}
         </Link>
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        <FilterChip href="/ideas" active={active === "all"} label="All" />
+      <div className="mt-8 flex flex-wrap gap-2">
+        <FilterChip href="/ideas" active={active === "all"} label={copy.all} />
         {IDEA_CATEGORIES.map((item) => (
           <FilterChip
             key={item}
@@ -44,17 +42,15 @@ export default async function IdeasPage({
       </div>
 
       {ideas.length === 0 ? (
-        <p className="surface rounded-3xl p-8 text-sm text-muted-foreground">
-          {copy.emptyIdeas}
-        </p>
+        <p className="mt-8 text-muted-foreground">{copy.emptyIdeas}</p>
       ) : (
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
           {ideas.map((idea) => (
             <IdeaCard key={idea.id} idea={idea} copy={copy} />
           ))}
         </div>
       )}
-    </div>
+    </PageShell>
   );
 }
 
@@ -70,8 +66,8 @@ function FilterChip({
   return (
     <Link
       href={href}
-      className={`rounded-full px-3 py-1.5 text-xs uppercase tracking-wider ${
-        active ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-accent"
+      className={`px-3 py-1.5 text-sm font-semibold ${
+        active ? "bg-wab-red text-white" : "bg-muted hover:bg-wab-yellow"
       }`}
     >
       {label}

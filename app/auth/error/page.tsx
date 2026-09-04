@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PageShell } from "@/components/page-shell";
 import { getCopy } from "@/lib/locale";
 
 export default async function AuthErrorPage({
@@ -16,15 +17,15 @@ export default async function AuthErrorPage({
         : copy.authError;
 
   return (
-    <div className="mx-auto max-w-lg space-y-5">
-      <h1 className="text-3xl font-semibold tracking-tight">{copy.brand}</h1>
-      <p className="text-sm leading-7 text-muted-foreground">{message}</p>
-      <Link
-        href="/login"
-        className="inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
-      >
-        {copy.signIn}
-      </Link>
-    </div>
+    <PageShell>
+      <div className="max-w-lg">
+        <h1 className="text-3xl font-bold italic">{copy.brand}</h1>
+        <span className="rule-yellow mt-3" />
+        <p className="mt-5 text-base leading-7">{message}</p>
+        <Link href="/login" className="btn btn-red mt-6">
+          {copy.signIn}
+        </Link>
+      </div>
+    </PageShell>
   );
 }
