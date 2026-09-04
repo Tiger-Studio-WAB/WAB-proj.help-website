@@ -1,0 +1,1 @@
+-- No default ideas. Accounts are created through Microsoft sign-in only.
