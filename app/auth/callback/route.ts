@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { isAzureProvider, isWabEmail } from "@/lib/domain";
+import { isAzureProvider, isAllowedEmail } from "@/lib/domain";
 import { createClient } from "@/lib/supabase/server";
 
 export async function GET(request: Request) {
@@ -24,7 +24,7 @@ export async function GET(request: Request) {
   const email = data.user?.email;
   const provider = data.user?.app_metadata?.provider;
 
-  if (!isWabEmail(email) || !isAzureProvider(provider)) {
+  if (!isAllowedEmail(email) || !isAzureProvider(provider)) {
     await supabase.auth.signOut();
     return NextResponse.redirect(`${origin}/auth/error?reason=domain`);
   }

@@ -79,7 +79,7 @@ export async function translateContent(input: {
         model: TRANSLATION_MODEL,
         output: Output.object({ schema: ideaSchema }),
         prompt: [
-          `Translate the following WAB student project idea into ${targetName}.`,
+          `Translate the following student project idea into ${targetName}.`,
           "Preserve meaning, names, and a practical tone. Do not add commentary.",
           `Title: ${sourceTitle}`,
           `Body: ${sourceBody}`,

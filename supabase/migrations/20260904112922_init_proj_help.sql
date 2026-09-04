@@ -1,5 +1,5 @@
--- WAB Proj.Help schema
--- Microsoft + @wab.edu only. RLS on every public table.
+-- Proj.Help schema
+-- Microsoft + allowed school domain only. RLS on every public table.
 
 create schema if not exists private;
 
@@ -32,7 +32,7 @@ create table if not exists public.profiles (
   display_name text not null,
   avatar_url text,
   created_at timestamptz not null default now(),
-  constraint profiles_wab_email_chk check (email ~* '@wab\.edu$')
+  constraint profiles_school_email_chk check (email ~* '@wab\.edu$')
 );
 
 create table if not exists public.ideas (
@@ -90,8 +90,8 @@ create trigger ideas_set_updated_at
 before update on public.ideas
 for each row execute function private.set_updated_at();
 
--- Reject non-Microsoft or non-@wab.edu signups before the auth user exists.
-create or replace function public.hook_restrict_signup_to_wab(event jsonb)
+-- Reject non-Microsoft or non-school-domain signups before the auth user exists.
+create or replace function public.hook_restrict_signup_to_school(event jsonb)
 returns jsonb
 language plpgsql
 as $$
@@ -106,7 +106,7 @@ begin
     return jsonb_build_object(
       'error', jsonb_build_object(
         'http_code', 403,
-        'message', 'WAB Proj.Help only accepts Microsoft sign-in.'
+        'message', 'This site only accepts Microsoft sign-in.'
       )
     );
   end if;
@@ -115,7 +115,7 @@ begin
     return jsonb_build_object(
       'error', jsonb_build_object(
         'http_code', 403,
-        'message', 'Only @wab.edu Microsoft accounts can use WAB Proj.Help.'
+        'message', 'Only authorized school Microsoft accounts can use this site.'
       )
     );
   end if;
@@ -124,8 +124,8 @@ begin
 end;
 $$;
 
-revoke all on function public.hook_restrict_signup_to_wab(jsonb) from public, anon, authenticated;
-grant execute on function public.hook_restrict_signup_to_wab(jsonb) to supabase_auth_admin;
+revoke all on function public.hook_restrict_signup_to_school(jsonb) from public, anon, authenticated;
+grant execute on function public.hook_restrict_signup_to_school(jsonb) to supabase_auth_admin;
 grant usage on schema public to supabase_auth_admin;
 
 create or replace function private.handle_new_user()
@@ -158,7 +158,7 @@ create trigger on_auth_user_created
 after insert on auth.users
 for each row execute function private.handle_new_user();
 
-create or replace function private.is_wab_member()
+create or replace function private.is_school_member()
 returns boolean
 language sql
 stable
@@ -167,72 +167,72 @@ as $$
 $$;
 
 grant usage on schema private to authenticated;
-grant execute on function private.is_wab_member() to authenticated;
+grant execute on function private.is_school_member() to authenticated;
 
 alter table public.profiles enable row level security;
 alter table public.ideas enable row level security;
 alter table public.responses enable row level security;
 alter table public.content_translations enable row level security;
 
-create policy profiles_select_wab
+create policy profiles_select_members
   on public.profiles for select
   to authenticated
-  using (private.is_wab_member());
+  using (private.is_school_member());
 
 create policy profiles_update_own
   on public.profiles for update
   to authenticated
-  using (id = auth.uid() and private.is_wab_member())
-  with check (id = auth.uid() and private.is_wab_member());
+  using (id = auth.uid() and private.is_school_member())
+  with check (id = auth.uid() and private.is_school_member());
 
-create policy ideas_select_wab
+create policy ideas_select_members
   on public.ideas for select
   to authenticated
-  using (private.is_wab_member());
+  using (private.is_school_member());
 
 create policy ideas_insert_own
   on public.ideas for insert
   to authenticated
-  with check (author_id = auth.uid() and private.is_wab_member());
+  with check (author_id = auth.uid() and private.is_school_member());
 
 create policy ideas_update_own
   on public.ideas for update
   to authenticated
-  using (author_id = auth.uid() and private.is_wab_member())
-  with check (author_id = auth.uid() and private.is_wab_member());
+  using (author_id = auth.uid() and private.is_school_member())
+  with check (author_id = auth.uid() and private.is_school_member());
 
 create policy ideas_delete_own
   on public.ideas for delete
   to authenticated
-  using (author_id = auth.uid() and private.is_wab_member());
+  using (author_id = auth.uid() and private.is_school_member());
 
-create policy responses_select_wab
+create policy responses_select_members
   on public.responses for select
   to authenticated
-  using (private.is_wab_member());
+  using (private.is_school_member());
 
 create policy responses_insert_own
   on public.responses for insert
   to authenticated
-  with check (author_id = auth.uid() and private.is_wab_member());
+  with check (author_id = auth.uid() and private.is_school_member());
 
 create policy responses_update_own
   on public.responses for update
   to authenticated
-  using (author_id = auth.uid() and private.is_wab_member())
-  with check (author_id = auth.uid() and private.is_wab_member());
+  using (author_id = auth.uid() and private.is_school_member())
+  with check (author_id = auth.uid() and private.is_school_member());
 
 create policy responses_delete_own
   on public.responses for delete
   to authenticated
-  using (author_id = auth.uid() and private.is_wab_member());
+  using (author_id = auth.uid() and private.is_school_member());
 
-create policy translations_select_wab
+create policy translations_select_members
   on public.content_translations for select
   to authenticated
-  using (private.is_wab_member());
+  using (private.is_school_member());
 
-create policy translations_insert_wab
+create policy translations_insert_members
   on public.content_translations for insert
   to authenticated
-  with check (private.is_wab_member());
+  with check (private.is_school_member());

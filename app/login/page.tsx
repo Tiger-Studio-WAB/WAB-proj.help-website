@@ -21,7 +21,7 @@ export default async function LoginPage({
         <div className="mt-6">
           <MicrosoftSignIn label={copy.signIn} nextPath={next} disabled={!configured} />
           {!configured ? (
-            <p className="mt-4 text-sm text-wab-red">{copy.setupNeeded}</p>
+            <p className="mt-4 text-sm text-brand-red">{copy.setupNeeded}</p>
           ) : null}
         </div>
       </div>

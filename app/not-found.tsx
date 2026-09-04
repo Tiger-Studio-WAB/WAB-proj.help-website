@@ -7,7 +7,7 @@ export default function NotFound() {
       <h1 className="text-3xl font-bold italic">Not found</h1>
       <span className="rule-yellow mt-3" />
       <p className="mt-5">That page is not on Proj.Help.</p>
-      <Link href="/" className="mt-4 inline-block font-semibold text-wab-red hover:underline">
+      <Link href="/" className="mt-4 inline-block font-semibold text-brand-red hover:underline">
         Home
       </Link>
     </PageShell>

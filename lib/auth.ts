@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { isAzureProvider, isWabEmail } from "@/lib/domain";
+import { isAzureProvider, isAllowedEmail } from "@/lib/domain";
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
 import type { Profile } from "@/lib/types";
@@ -23,7 +23,7 @@ export async function getSessionUser() {
       ? String(data.claims.app_metadata.provider)
       : null;
 
-  if (!isWabEmail(email) || !isAzureProvider(provider)) {
+  if (!isAllowedEmail(email) || !isAzureProvider(provider)) {
     return null;
   }
 

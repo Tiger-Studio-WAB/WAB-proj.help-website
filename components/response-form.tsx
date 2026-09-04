@@ -20,7 +20,7 @@ export function ResponseForm({
         <textarea required minLength={2} maxLength={4000} name="body" rows={4} className="field" />
       </label>
       <label className="flex items-center gap-2 text-sm">
-        <input type="checkbox" name="can_help" className="size-4 accent-wab-red" />
+        <input type="checkbox" name="can_help" className="size-4 accent-brand-red" />
         {copy.canHelp}
       </label>
       <button type="submit" className="btn btn-red">

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { LanguageToggle } from "@/components/language-toggle";
 import { SignOutButton } from "@/components/sign-out-button";
@@ -15,22 +14,10 @@ export function SiteHeader({
   profile: Profile | null;
 }) {
   return (
-    <header className="bg-wab-red text-white">
+    <header className="bg-brand-red text-white">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-3">
-        <Link href={profile ? "/ideas" : "/"} className="flex items-center gap-3 text-white">
-          <Image
-            src="/wab-logo.svg"
-            alt=""
-            width={44}
-            height={42}
-            className="brightness-0 invert"
-            unoptimized
-            priority
-          />
-          <span>
-            <span className="block text-sm font-semibold leading-tight">{copy.school}</span>
-            <span className="block text-xs text-white/80">{copy.brand}</span>
-          </span>
+        <Link href={profile ? "/ideas" : "/"} className="text-lg font-bold text-white">
+          {copy.brand}
         </Link>
         <nav className="flex items-center gap-4 text-sm font-semibold">
           {profile ? (

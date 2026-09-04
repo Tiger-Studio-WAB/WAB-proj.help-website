@@ -15,7 +15,7 @@ export default async function NewIdeaPage({
 
   return (
     <PageShell>
-      <Link href="/ideas" className="text-sm font-semibold text-wab-red hover:underline">
+      <Link href="/ideas" className="text-sm font-semibold text-brand-red hover:underline">
         ← {copy.backToIdeas}
       </Link>
       <h1 className="mt-4 text-3xl font-bold italic">{copy.publish}</h1>

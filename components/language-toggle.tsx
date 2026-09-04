@@ -16,7 +16,7 @@ export function LanguageToggle({ locale }: { locale: ContentLanguage }) {
     <button
       type="button"
       onClick={toggle}
-      className="border border-white/40 px-2.5 py-1 text-xs font-semibold text-white hover:bg-white hover:text-wab-red"
+      className="border border-white/40 px-2.5 py-1 text-xs font-semibold text-white hover:bg-white hover:text-brand-red"
       aria-label="Switch language"
     >
       {locale === "en" ? "中文" : "EN"}

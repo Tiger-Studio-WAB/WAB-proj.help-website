@@ -24,7 +24,7 @@ export default async function MePage() {
       <section className="mt-10 space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold">{copy.ideas}</h2>
-          <Link href="/ideas/new" className="text-sm font-semibold text-wab-red hover:underline">
+          <Link href="/ideas/new" className="text-sm font-semibold text-brand-red hover:underline">
             {copy.publish}
           </Link>
         </div>
@@ -50,7 +50,7 @@ export default async function MePage() {
                 <p className="leading-7">{response.body}</p>
                 <Link
                   href={`/ideas/${response.idea_id}`}
-                  className="mt-2 inline-block text-sm font-semibold text-wab-red hover:underline"
+                  className="mt-2 inline-block text-sm font-semibold text-brand-red hover:underline"
                 >
                   {copy.readMore}
                 </Link>

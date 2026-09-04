@@ -69,7 +69,7 @@ export function TranslatePanel({
       {title ? <h1 className="text-3xl font-bold italic">{title}</h1> : null}
       <p className="whitespace-pre-wrap text-base leading-8">{body}</p>
       {helpNeeded ? (
-        <div className="border-l-4 border-wab-yellow bg-muted px-4 py-3">
+        <div className="border-l-4 border-brand-yellow bg-muted px-4 py-3">
           <p className="text-sm font-semibold">{copy.helpNeeded}</p>
           <p className="mt-1 text-sm leading-7">{helpNeeded}</p>
         </div>
@@ -79,7 +79,7 @@ export function TranslatePanel({
           type="button"
           onClick={onTranslate}
           disabled={pending}
-          className="text-sm font-semibold text-wab-red hover:underline disabled:opacity-50"
+          className="text-sm font-semibold text-brand-red hover:underline disabled:opacity-50"
         >
           {pending
             ? "…"
@@ -93,7 +93,7 @@ export function TranslatePanel({
           <span className="text-sm text-muted-foreground">{copy.showingTranslation}</span>
         ) : null}
       </div>
-      {error ? <p className="text-sm text-wab-red">{error}</p> : null}
+      {error ? <p className="text-sm text-brand-red">{error}</p> : null}
     </div>
   );
 }

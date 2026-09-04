@@ -3,12 +3,12 @@ import type { UiCopy } from "@/lib/i18n";
 import type { Idea, IdeaCategory } from "@/lib/types";
 
 const categoryColor: Record<IdeaCategory, string> = {
-  stem: "bg-wab-blue",
-  arts: "bg-wab-purple",
-  community: "bg-wab-teal",
-  research: "bg-wab-red",
-  entrepreneurship: "bg-wab-yellow",
-  service: "bg-wab-cyan",
+  stem: "bg-brand-blue",
+  arts: "bg-brand-purple",
+  community: "bg-brand-teal",
+  research: "bg-brand-red",
+  entrepreneurship: "bg-brand-yellow",
+  service: "bg-brand-cyan",
   other: "bg-muted-foreground",
 };
 
@@ -30,8 +30,8 @@ export function IdeaCard({ idea, copy }: { idea: Idea; copy: UiCopy }) {
         {idea.body}
       </p>
       <div className="mt-4 flex items-center justify-between gap-3">
-        <p className="text-sm">{idea.profiles?.display_name ?? "WAB"}</p>
-        <Link href={`/ideas/${idea.id}`} className="text-sm font-semibold text-wab-red hover:underline">
+        <p className="text-sm">{idea.profiles?.display_name ?? "Member"}</p>
+        <Link href={`/ideas/${idea.id}`} className="text-sm font-semibold text-brand-red hover:underline">
           {copy.readMore}
         </Link>
       </div>

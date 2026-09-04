@@ -67,7 +67,7 @@ function FilterChip({
     <Link
       href={href}
       className={`px-3 py-1.5 text-sm font-semibold ${
-        active ? "bg-wab-red text-white" : "bg-muted hover:bg-wab-yellow"
+        active ? "bg-brand-red text-white" : "bg-muted hover:bg-brand-yellow"
       }`}
     >
       {label}

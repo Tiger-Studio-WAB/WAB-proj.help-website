@@ -14,7 +14,7 @@ export function IdeaForm({
   return (
     <form action={createIdea} className="space-y-5">
       {error ? (
-        <p className="bg-wab-yellow/40 px-3 py-2 text-sm">
+        <p className="bg-brand-yellow/40 px-3 py-2 text-sm">
           {error === "validation"
             ? locale === "zh"
               ? "标题和说明再写完整一点。"

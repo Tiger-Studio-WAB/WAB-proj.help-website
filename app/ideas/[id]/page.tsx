@@ -22,7 +22,7 @@ export default async function IdeaDetailPage({
   return (
     <PageShell>
       <div className="mx-auto max-w-3xl space-y-10">
-        <Link href="/ideas" className="text-sm font-semibold text-wab-red hover:underline">
+        <Link href="/ideas" className="text-sm font-semibold text-brand-red hover:underline">
           ← {copy.backToIdeas}
         </Link>
 
