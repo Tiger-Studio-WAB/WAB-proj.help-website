@@ -1,5 +1,7 @@
 # Proj.Help
 
+[English](README.md) · [中文](README.zh.md) · [Deutsch](README.de.md)
+
 A community board for publishing project ideas, getting help and replies, and reading posts in English or Chinese.
 
 Sign-in is **Microsoft only**. Only school Microsoft accounts on the allowed domain can join. The domain is configured in code and is not shown in the interface.
